@@ -1,27 +1,26 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
-
 CREATE TABLE pais (
     cod_pais uuid PRIMARY KEY,
-    nb_pais varchar(20) NOT NULL,
-)
+    nb_pais varchar(20) NOT NULL
+);
 
 CREATE TABLE ciudad (
     cod_ciudad uuid PRIMARY KEY,
     nb_ciudad varchar(40) NOT NULL,
     cod_pais uuid NOT NULL REFERENCES pais(cod_pais)
-)
+);
 
 CREATE TABLE sucursal (
     cod_sucursal uuid PRIMARY KEY,
     nb_sucursal varchar(40) NOT NULL,
     cod_ciudad uuid NOT NULL REFERENCES ciudad(cod_ciudad)
-)
+);
 
 CREATE TABLE tipo_producto (
     cod_tipo_producto uuid PRIMARY KEY,
     nb_tipo_producto varchar(40) NOT NULL
-)
+);
 
 CREATE TABLE producto (
     cod_producto uuid PRIMARY KEY,
@@ -29,23 +28,23 @@ CREATE TABLE producto (
     descripcion varchar(100) NOT NULL,
     cod_tipo_producto uuid NOT NULL REFERENCES tipo_producto(cod_tipo_producto),
     calificacion int NOT NULL
-)
+);
 
 CREATE TABLE cliente (
     cod_cliente uuid PRIMARY KEY,
     nb_cliente varchar(50) NOT NULL,
-    ci_rif int(12) NOT NULL,
-    telefono int(11) NOT NULL,
+    ci_rif int NOT NULL,
+    telefono int NOT NULL,
     direccion varchar(100) NOT NULL,
     sexo varchar(10) NOT NULL,
     email varchar(30) NOT NULL,
     cod_sucursal uuid NOT NULL REFERENCES sucursal(cod_sucursal)
-)
+);
 
 CREATE TABLE evaluacion_servicio (
     cod_evaluacion_servicio uuid PRIMARY KEY,
     nb_descripcion varchar(100) NOT NULL
-)
+);
 
 CREATE TABLE recomienda(
     cod_cliente uuid NOT NULL REFERENCES cliente(cod_cliente),
@@ -53,12 +52,12 @@ CREATE TABLE recomienda(
     cod_producto uuid NOT NULL REFERENCES producto(cod_producto),
     recomienda_amigo varchar(2) NOT NULL,
     CONSTRAINT pk_recomienda PRIMARY KEY (cod_cliente, cod_evaluacion_servicio, cod_producto)
-)
+);
 
 CREATE TABLE contrato (
     nro_contrato uuid PRIMARY KEY,
     descrip_contrato varchar(100) NOT NULL
-)
+);
 
 CREATE TABLE registro_contrato (
     nro_contrato uuid NOT NULL REFERENCES contrato(nro_contrato),
@@ -69,15 +68,15 @@ CREATE TABLE registro_contrato (
     monto int NOT NULL,
     estado_contrato varchar(15) NOT NULL,
     CONSTRAINT pk_reg_contrato PRIMARY KEY (nro_contrato, cod_producto, cod_cliente)
-)
+);
 
 CREATE TABLE siniestro (
     nro_siniestro uuid PRIMARY KEY,
     descripcion_siniestro varchar(100) NOT NULL
-)
+);
 
 CREATE TABLE registro_siniestro (
-    nro_siniestro uuid PRIMARY KEY,
+    nro_siniestro uuid NOT NULL REFERENCES siniestro(nro_siniestro),
     nro_contrato uuid NOT NULL REFERENCES contrato(nro_contrato),
     fecha_siniestro date NOT NULL,
     fecha_respuesta date NOT NULL,
@@ -85,14 +84,4 @@ CREATE TABLE registro_siniestro (
     monto_reconocido int NOT NULL,
     monto_solicitado int NOT NULL,
     CONSTRAINT pk_reg_siniestro PRIMARY KEY (nro_siniestro, nro_contrato, fecha_siniestro)
-)
-
-
-
-
-
-
-
-
-
-CONSTRAINT pk_ciudad PRIMARY KEY (cod_ciudad, cod_pais)
+);
