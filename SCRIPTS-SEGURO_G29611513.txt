@@ -33,7 +33,7 @@ CREATE TABLE "SEGURO_G29611513".cliente (
     nb_cliente varchar(50) NOT NULL,
     ci_rif varchar(45) NOT NULL,
     telefono varchar(45) NOT NULL,
-    direccion varchar(45) NOT NULL,
+    direccion varchar(100) NOT NULL,
     sexo varchar(45) NOT NULL,
     email varchar(45) NOT NULL,
     cod_sucursal serial NOT NULL REFERENCES "SEGURO_G29611513".sucursal(cod_sucursal)
@@ -83,3 +83,5 @@ CREATE TABLE "SEGURO_G29611513".registro_siniestro (
     monto_solicitado real NOT NULL,
     CONSTRAINT pk_reg_siniestro PRIMARY KEY (nro_siniestro, nro_contrato, fecha_siniestro)
 );
+
+
