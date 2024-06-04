@@ -22,3 +22,9 @@ DROP TABLE "SEGURO_G29611513".registro_contrato;
 DROP TABLE "SEGURO_G29611513".siniestro;
 
 DROP TABLE "SEGURO_G29611513".registro_siniestro;
+
+
+//verificar el tipo de dato que tiene una columna
+SELECT data_type
+FROM information_schema.columns
+WHERE table_name = 'tipo_producto' AND column_name = 'cod_tipo_producto';

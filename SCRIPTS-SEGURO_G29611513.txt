@@ -1,87 +1,85 @@
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-
 CREATE TABLE "SEGURO_G29611513".pais (
-    cod_pais int PRIMARY KEY,
-    nb_pais varchar(20) NOT NULL
+    cod_pais serial PRIMARY KEY,
+    nb_pais varchar(45) NOT NULL
 );
 
 CREATE TABLE "SEGURO_G29611513".ciudad (
-    cod_ciudad int PRIMARY KEY,
-    nb_ciudad varchar(40) NOT NULL,
-    cod_pais int NOT NULL REFERENCES pais(cod_pais)
+    cod_ciudad serial PRIMARY KEY,
+    nb_ciudad varchar(45) NOT NULL,
+    cod_pais serial NOT NULL REFERENCES "SEGURO_G29611513".pais(cod_pais)
 );
 
 CREATE TABLE "SEGURO_G29611513".sucursal (
-    cod_sucursal int PRIMARY KEY,
-    nb_sucursal varchar(40) NOT NULL,
-    cod_ciudad int NOT NULL REFERENCES ciudad(cod_ciudad)
+    cod_sucursal serial PRIMARY KEY,
+    nb_sucursal varchar(45) NOT NULL,
+    cod_ciudad serial NOT NULL REFERENCES "SEGURO_G29611513".ciudad(cod_ciudad)
 );
 
 CREATE TABLE "SEGURO_G29611513".tipo_producto (
-    cod_tipo_producto int PRIMARY KEY,
-    nb_tipo_producto varchar(40) NOT NULL
+    cod_tipo_producto serial PRIMARY KEY,
+    nb_tipo_producto varchar(45) NOT NULL
 );
 
 CREATE TABLE "SEGURO_G29611513".producto (
-    cod_producto int PRIMARY KEY,
-    nb_producto varchar(40) NOT NULL,
+    cod_producto serial PRIMARY KEY,
+    nb_producto varchar(45) NOT NULL,
     descripcion varchar(100) NOT NULL,
-    cod_tipo_producto int NOT NULL REFERENCES tipo_producto(cod_tipo_producto),
+    cod_tipo_producto serial NOT NULL REFERENCES "SEGURO_G29611513".tipo_producto(cod_tipo_producto),
     calificacion int NOT NULL
 );
 
 CREATE TABLE "SEGURO_G29611513".cliente (
-    cod_cliente int PRIMARY KEY,
+    cod_cliente serial PRIMARY KEY,
     nb_cliente varchar(50) NOT NULL,
-    ci_rif int NOT NULL,
-    telefono int NOT NULL,
-    direccion varchar(100) NOT NULL,
-    sexo varchar(10) NOT NULL,
-    email varchar(30) NOT NULL,
-    cod_sucursal int NOT NULL REFERENCES sucursal(cod_sucursal)
+    ci_rif varchar(45) NOT NULL,
+    telefono varchar(45) NOT NULL,
+    direccion varchar(45) NOT NULL,
+    sexo varchar(45) NOT NULL,
+    email varchar(45) NOT NULL,
+    cod_sucursal serial NOT NULL REFERENCES "SEGURO_G29611513".sucursal(cod_sucursal)
 );
 
 CREATE TABLE "SEGURO_G29611513".evaluacion_servicio (
-    cod_evaluacion_servicio int PRIMARY KEY,
+    cod_evaluacion_servicio serial PRIMARY KEY,
     nb_descripcion varchar(100) NOT NULL
 );
 
 CREATE TABLE "SEGURO_G29611513".recomienda(
-    cod_cliente int NOT NULL REFERENCES cliente(cod_cliente),
-    cod_evaluacion_servicio int NOT NULL REFERENCES evaluacion_servicio(cod_evaluacion_servicio),
-    cod_producto int NOT NULL REFERENCES producto(cod_producto),
+    cod_cliente serial NOT NULL REFERENCES "SEGURO_G29611513".cliente(cod_cliente),
+    cod_evaluacion_servicio serial NOT NULL REFERENCES "SEGURO_G29611513".evaluacion_servicio(cod_evaluacion_servicio),
+    cod_producto serial NOT NULL REFERENCES "SEGURO_G29611513".producto(cod_producto),
     recomienda_amigo varchar(2) NOT NULL,
     CONSTRAINT pk_recomienda PRIMARY KEY (cod_cliente, cod_evaluacion_servicio, cod_producto)
 );
 
 CREATE TABLE "SEGURO_G29611513".contrato (
-    nro_contrato int PRIMARY KEY,
+    nro_contrato serial PRIMARY KEY,
     descrip_contrato varchar(100) NOT NULL
 );
 
 CREATE TABLE "SEGURO_G29611513".registro_contrato (
-    nro_contrato int NOT NULL REFERENCES contrato(nro_contrato),
-    cod_producto int NOT NULL REFERENCES producto(cod_producto),
-    cod_cliente int NOT NULL REFERENCES cliente(cod_cliente),
+    nro_contrato serial NOT NULL REFERENCES "SEGURO_G29611513".contrato(nro_contrato),
+    cod_producto serial NOT NULL REFERENCES "SEGURO_G29611513".producto(cod_producto),
+    cod_cliente serial NOT NULL REFERENCES "SEGURO_G29611513".cliente(cod_cliente),
     fecha_inicio date NOT NULL,
     fecha_fin date NOT NULL,
-    monto int NOT NULL,
+    monto real NOT NULL,
     estado_contrato varchar(15) NOT NULL,
     CONSTRAINT pk_reg_contrato PRIMARY KEY (nro_contrato, cod_producto, cod_cliente)
 );
 
 CREATE TABLE "SEGURO_G29611513".siniestro (
-    nro_siniestro int PRIMARY KEY,
+    nro_siniestro serial PRIMARY KEY,
     descripcion_siniestro varchar(100) NOT NULL
 );
 
 CREATE TABLE "SEGURO_G29611513".registro_siniestro (
-    nro_siniestro int NOT NULL REFERENCES siniestro(nro_siniestro),
-    nro_contrato int NOT NULL REFERENCES contrato(nro_contrato),
+    nro_siniestro serial NOT NULL REFERENCES "SEGURO_G29611513".siniestro(nro_siniestro),
+    nro_contrato serial NOT NULL REFERENCES "SEGURO_G29611513".contrato(nro_contrato),
     fecha_siniestro date NOT NULL,
     fecha_respuesta date NOT NULL,
     id_rechazo varchar(2) NOT NULL,
-    monto_reconocido int NOT NULL,
-    monto_solicitado int NOT NULL,
+    monto_reconocido real NOT NULL,
+    monto_solicitado real NOT NULL,
     CONSTRAINT pk_reg_siniestro PRIMARY KEY (nro_siniestro, nro_contrato, fecha_siniestro)
 );
