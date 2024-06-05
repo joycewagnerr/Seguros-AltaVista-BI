@@ -4,7 +4,7 @@ CREATE TABLE "SEGURO_DW_G29611513".dim_cliente (
     nb_cliente varchar(25) NOT NULL,
     ci_rif varchar(45) NOT NULL,
     telefono varchar(45) NOT NULL,
-    direccion varchar(45) NOT NULL,
+    direccion varchar(100) NOT NULL,
     sexo varchar(45) NOT NULL,
     email varchar(45) NOT NULL
 );
@@ -14,7 +14,7 @@ CREATE TABLE "SEGURO_DW_G29611513".dim_producto (
     sk_dim_producto serial PRIMARY KEY,
     cod_producto serial NOT NULL,
     nb_producto varchar(25) NOT NULL,
-    descrip_producto varchar(25) NOT NULL,
+    descrip_producto varchar(100) NOT NULL,
     cod_tipo_producto serial NOT NULL,
     nb_tipo_producto varchar(25) NOT NULL,
     calificacion int NOT NULL
@@ -24,7 +24,7 @@ CREATE TABLE "SEGURO_DW_G29611513".dim_producto (
 CREATE TABLE "SEGURO_DW_G29611513".dim_contrato (
     sk_dim_contrato serial PRIMARY KEY,
     nro_contrato serial NOT NULL,
-    descrip_contrato varchar(25) NOT NULL
+    descrip_contrato varchar(100) NOT NULL
 );
 
 CREATE TABLE "SEGURO_DW_G29611513".dim_estado_contrato (
@@ -42,7 +42,7 @@ CREATE TABLE "SEGURO_DW_G29611513".dim_evaluacion_servicio (
 CREATE TABLE "SEGURO_DW_G29611513".dim_siniestro (
     sk_dim_siniestro serial PRIMARY KEY,
     nro_siniestro serial NOT NULL,
-    descripcion_siniestro varchar(25) NOT NULL
+    descripcion_siniestro varchar(100) NOT NULL
 );
 
 CREATE TABLE "SEGURO_DW_G29611513".dim_sucursal (
@@ -56,10 +56,11 @@ CREATE TABLE "SEGURO_DW_G29611513".dim_sucursal (
 );
 
 CREATE TABLE "SEGURO_DW_G29611513".dim_tiempo (
-    sk_dim_tiempo serial PRIMARY KEY,
-    cod_annio serial NOT NULL,
+    sk_tiempo serial PRIMARY KEY,
+	fecha date NOT NULL,
+    cod_anio serial NOT NULL,
     cod_mes serial NOT NULL,
-    cod_dia_annio serial NOT NULL,
+    cod_dia_anio serial NOT NULL,
     cod_dia_mes serial NOT NULL,
     cod_dia_semana serial NOT NULL,
     cod_semana serial NOT NULL,
@@ -67,15 +68,13 @@ CREATE TABLE "SEGURO_DW_G29611513".dim_tiempo (
     desc_dia_semana_corta varchar(5) NOT NULL,
     desc_mes varchar(20) NOT NULL,
     desc_mes_corta varchar(3) NOT NULL,
-    desc_trimestre serial NOT NULL,
-    desc_semestre serial NOT NULL,
-    fecha_completa date NOT NULL
+    desc_trimestre varchar(20) NOT NULL
 );
 
 
 CREATE TABLE "SEGURO_DW_G29611513".fact_metas (
-    sk_dim_fecha_inicio_meta serial NOT NULL REFERENCES "SEGURO_DW_G29611513".dim_tiempo(sk_dim_tiempo),
-    sk_dim_fecha_fin_meta serial NOT NULL REFERENCES "SEGURO_DW_G29611513".dim_tiempo(sk_dim_tiempo),
+    sk_dim_fecha_inicio_meta serial NOT NULL REFERENCES "SEGURO_DW_G29611513".dim_tiempo(sk_tiempo),
+    sk_dim_fecha_fin_meta serial NOT NULL REFERENCES "SEGURO_DW_G29611513".dim_tiempo(sk_tiempo),
     sk_dim_cliente serial NOT NULL REFERENCES "SEGURO_DW_G29611513".dim_cliente(sk_dim_cliente),
     sk_dim_producto serial NOT NULL REFERENCES "SEGURO_DW_G29611513".dim_producto(sk_dim_producto),
     sk_dim_contrato serial NOT NULL REFERENCES "SEGURO_DW_G29611513".dim_contrato(sk_dim_contrato),
@@ -94,8 +93,8 @@ CREATE TABLE "SEGURO_DW_G29611513".fact_evaluacion_servicio (
 );
 
 CREATE TABLE "SEGURO_DW_G29611513".fact_registro_contrato (
-    sk_dim_tiempo_fecha_inicio date NOT NULL REFERENCES "SEGURO_DW_G29611513".dim_tiempo(fecha_completa),
-    sk_dim_tiempo_fecha_fin date NOT NULL REFERENCES "SEGURO_DW_G29611513".dim_tiempo(fecha_completa),
+    sk_fecha_inicio serial NOT NULL REFERENCES "SEGURO_DW_G29611513".dim_tiempo(sk_tiempo),
+    sk_fecha_fin serial NOT NULL REFERENCES "SEGURO_DW_G29611513".dim_tiempo(sk_tiempo),
     sk_dim_cliente serial NOT NULL REFERENCES "SEGURO_DW_G29611513".dim_cliente(sk_dim_cliente),
     sk_dim_contrato serial NOT NULL REFERENCES "SEGURO_DW_G29611513".dim_contrato(sk_dim_contrato),
     sk_dim_producto serial NOT NULL REFERENCES "SEGURO_DW_G29611513".dim_producto(sk_dim_producto),
@@ -108,8 +107,8 @@ CREATE TABLE "SEGURO_DW_G29611513".fact_registro_contrato (
 );
 
 CREATE TABLE "SEGURO_DW_G29611513".fact_registro_siniestro (
-    sk_fecha_siniestro serial NOT NULL REFERENCES "SEGURO_DW_G29611513".dim_tiempo(sk_dim_tiempo),
-    sk_fecha_respuesta serial NOT NULL REFERENCES "SEGURO_DW_G29611513".dim_tiempo(sk_dim_tiempo),
+    sk_fecha_siniestro serial NOT NULL REFERENCES "SEGURO_DW_G29611513".dim_tiempo(sk_tiempo),
+    sk_fecha_respuesta serial NOT NULL REFERENCES "SEGURO_DW_G29611513".dim_tiempo(sk_tiempo),
     sk_dim_cliente serial NOT NULL REFERENCES "SEGURO_DW_G29611513".dim_cliente(sk_dim_cliente),
     sk_dim_contrato serial NOT NULL REFERENCES "SEGURO_DW_G29611513".dim_contrato(sk_dim_contrato),
     sk_dim_sucursal serial NOT NULL REFERENCES "SEGURO_DW_G29611513".dim_sucursal(sk_dim_sucursal),
@@ -120,3 +119,10 @@ CREATE TABLE "SEGURO_DW_G29611513".fact_registro_siniestro (
     monto_solicitado real NOT NULL,
     id_rechazo char(2) NOT NULL
 );
+
+
+drop table "SEGURO_DW_G29611513".dim_tiempo
+drop table "SEGURO_DW_G29611513".fact_metas;
+drop table "SEGURO_DW_G29611513".fact_registro_contrato;
+drop table "SEGURO_DW_G29611513".fact_registro_siniestro;
+drop table "SEGURO_DW_G29611513".fact_evaluacion_servicio;
