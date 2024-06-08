@@ -89,7 +89,7 @@ CREATE TABLE "SEGURO_DW_G29611513".fact_evaluacion_servicio (
     sk_dim_producto serial NOT NULL REFERENCES "SEGURO_DW_G29611513".dim_producto(sk_dim_producto),
     sk_dim_evaluacion_servicio serial NOT NULL REFERENCES "SEGURO_DW_G29611513".dim_evaluacion_servicio(sk_dim_evaluacion_servicio),
     cantidad int NOT NULL,
-    recomienda_amigo real NOT NULL
+    recomienda_amigo char(2) NOT NULL
 );
 
 CREATE TABLE "SEGURO_DW_G29611513".fact_registro_contrato (

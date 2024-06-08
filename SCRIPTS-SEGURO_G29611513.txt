@@ -76,6 +76,8 @@ CREATE TABLE "SEGURO_G29611513".siniestro (
 CREATE TABLE "SEGURO_G29611513".registro_siniestro (
     nro_siniestro serial NOT NULL REFERENCES "SEGURO_G29611513".siniestro(nro_siniestro),
     nro_contrato serial NOT NULL REFERENCES "SEGURO_G29611513".contrato(nro_contrato),
+    cod_cliente serial NOT NULL REFERENCES "SEGURO_G29611513".cliente(cod_cliente),
+    cod_producto serial NOT NULL REFERENCES "SEGURO_G29611513".producto(cod_producto),
     fecha_siniestro date NOT NULL,
     fecha_respuesta date NOT NULL,
     id_rechazo varchar(2) NOT NULL,
@@ -85,3 +87,14 @@ CREATE TABLE "SEGURO_G29611513".registro_siniestro (
 );
 
 
+SELECT nro_contrato, COUNT(*) AS cantidad_contrato
+FROM "SEGURO_G29611513".registro_contrato
+GROUP BY nro_contrato;
+
+SELECT cod_cliente, COUNT(*) AS cantidad_cliente
+FROM "SEGURO_G29611513".registro_contrato
+GROUP BY cod_cliente;
+
+SELECT cod_producto, COUNT(*) AS cantidad_producto
+FROM "SEGURO_G29611513".registro_contrato
+GROUP BY cod_producto;
