@@ -151,6 +151,8 @@ INSERT INTO "SEGURO_G29611513".registro_contrato (nro_contrato, cod_producto, co
     (13, 7, 13, '2023-11-20', '2024-11-20', 445.0, 'activo'),
     (14, 6, 14, '2023-11-30', '2024-11-30', 8569.0, 'vencido'),
     (15, 2, 15, '2023-12-05', '2024-12-05', 1542.0, 'suspendido');
+INSERT INTO "SEGURO_G29611513".registro_contrato (nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto, estado_contrato) VALUES
+(1, 2, 36, '2023-01-14', '2024-01-14', 140.0, 'activo')
 
 
 INSERT INTO "SEGURO_G29611513".siniestro (descripcion_siniestro) VALUES
@@ -193,3 +195,12 @@ INSERT INTO "SEGURO_G29611513".registro_siniestro (nro_siniestro, nro_contrato, 
     (5, 10, 19, 2, '2022-08-24', '2022-09-24', 'NO', 500.00, 1000.00),
     (9, 1, 20, 1, '2022-09-27', '2022-10-27', 'NO', 500.00, 1000.00),
     (10, 9, 21, 4, '2022-10-11', '2022-11-11', 'SI', 500.00, 1000.00);
+
+
+INSERT INTO "SEGURO_G29611513".metas (nro_contrato, cod_producto, fecha_inicio_meta, fecha_fin_meta, monto_meta_ingreso, meta_renovacion, meta_asegurado) VALUES
+    (1, 1, '2023-01-01', '2024-01-01', 100000.00, 50, 100),
+    (2, 5, '2023-01-01', '2024-01-01', 20500.00, 20, 80),
+    (9, 3, '2023-01-01', '2024-01-01', 50000.00, 30, 70),
+    (11, 4, '2023-01-01', '2024-01-01', 80000.00, 80, 100),
+    (5, 6, '2023-01-01', '2024-01-01', 40000.00, 50, 70),
+    (4, 7, '2023-01-01', '2024-01-01', 100000.00, 50, 80);
