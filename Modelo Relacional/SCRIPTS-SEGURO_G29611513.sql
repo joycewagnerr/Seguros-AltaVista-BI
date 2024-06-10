@@ -6,13 +6,15 @@ CREATE TABLE "SEGURO_G29611513".pais (
 CREATE TABLE "SEGURO_G29611513".ciudad (
     cod_ciudad serial PRIMARY KEY,
     nb_ciudad varchar(45) NOT NULL,
-    cod_pais serial NOT NULL REFERENCES "SEGURO_G29611513".pais(cod_pais)
+    cod_pais serial NOT NULL,
+    CONSTRAINT fk_pais FOREIGN KEY (cod_pais) REFERENCES "SEGURO_G29611513".pais(cod_pais)  
 );
 
 CREATE TABLE "SEGURO_G29611513".sucursal (
     cod_sucursal serial PRIMARY KEY,
     nb_sucursal varchar(45) NOT NULL,
-    cod_ciudad serial NOT NULL REFERENCES "SEGURO_G29611513".ciudad(cod_ciudad)
+    cod_ciudad serial NOT NULL,
+    CONSTRAINT fk_ciudad FOREIGN KEY (cod_ciudad) REFERENCES "SEGURO_G29611513".ciudad(cod_ciudad)
 );
 
 CREATE TABLE "SEGURO_G29611513".tipo_producto (
@@ -24,8 +26,9 @@ CREATE TABLE "SEGURO_G29611513".producto (
     cod_producto serial PRIMARY KEY,
     nb_producto varchar(45) NOT NULL,
     descripcion varchar(100) NOT NULL,
-    cod_tipo_producto serial NOT NULL REFERENCES "SEGURO_G29611513".tipo_producto(cod_tipo_producto),
-    calificacion int NOT NULL
+    cod_tipo_producto serial NOT NULL,
+    calificacion int NOT NULL,
+    CONSTRAINT fk_cod_tipo_producto FOREIGN KEY (cod_tipo_producto ) REFERENCES "SEGURO_G29611513".tipo_producto(cod_tipo_producto)
 );
 
 CREATE TABLE "SEGURO_G29611513".cliente (
@@ -36,7 +39,8 @@ CREATE TABLE "SEGURO_G29611513".cliente (
     direccion varchar(100) NOT NULL,
     sexo varchar(45) NOT NULL,
     email varchar(45) NOT NULL,
-    cod_sucursal serial NOT NULL REFERENCES "SEGURO_G29611513".sucursal(cod_sucursal)
+    cod_sucursal serial NOT NULL,
+    CONSTRAINT fk_cod_sucursal FOREIGN KEY (cod_sucursal) REFERENCES "SEGURO_G29611513".sucursal(cod_sucursal)
 );
 
 CREATE TABLE "SEGURO_G29611513".evaluacion_servicio (
