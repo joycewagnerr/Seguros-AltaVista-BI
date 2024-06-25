@@ -148,3 +148,16 @@ drop table "SEGURO_DW_G29611513".fact_metas;
 drop table "SEGURO_DW_G29611513".fact_registro_contrato;
 drop table "SEGURO_DW_G29611513".fact_registro_siniestro;
 drop table "SEGURO_DW_G29611513".fact_evaluacion_servicio;
+
+DELETE FROM "SEGURO_DW_G29611513".fact_metas;
+DELETE FROM "SEGURO_DW_G29611513".fact_registro_contrato;
+DELETE FROM "SEGURO_DW_G29611513".fact_registro_siniestro;
+DELETE FROM "SEGURO_DW_G29611513".fact_evaluacion_servicio;
+DELETE FROM "SEGURO_DW_G29611513".dim_tiempo;
+DELETE FROM "SEGURO_DW_G29611513".dim_cliente;
+DELETE FROM "SEGURO_DW_G29611513".dim_producto;
+DELETE FROM "SEGURO_DW_G29611513".dim_contrato;
+DELETE FROM "SEGURO_DW_G29611513".dim_estado_contrato;
+DELETE FROM "SEGURO_DW_G29611513".dim_evaluacion_servicio;
+DELETE FROM "SEGURO_DW_G29611513".dim_siniestro;
+DELETE FROM "SEGURO_DW_G29611513".dim_sucursal;
