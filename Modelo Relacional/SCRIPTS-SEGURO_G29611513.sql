@@ -65,6 +65,7 @@ CREATE TABLE "SEGURO_G29611513".registro_contrato (
     nro_contrato serial NOT NULL REFERENCES "SEGURO_G29611513".contrato(nro_contrato),
     cod_producto serial NOT NULL REFERENCES "SEGURO_G29611513".producto(cod_producto),
     cod_cliente serial NOT NULL REFERENCES "SEGURO_G29611513".cliente(cod_cliente),
+    cod_sucursal serial NOT NULL REFERENCES "SEGURO_G29611513".sucursal(cod_sucursal),
     fecha_inicio date NOT NULL,
     fecha_fin date NOT NULL,
     monto real NOT NULL,

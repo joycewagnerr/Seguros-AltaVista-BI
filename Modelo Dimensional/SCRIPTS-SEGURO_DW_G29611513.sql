@@ -106,6 +106,7 @@ CREATE TABLE "SEGURO_DW_G29611513".fact_registro_contrato (
     sk_fecha_fin serial NOT NULL,
     sk_dim_cliente serial NOT NULL,
     sk_dim_contrato serial NOT NULL,
+    sk_dim_sucursal serial NOT NULL,
     sk_dim_producto serial NOT NULL,
     sk_dim_estado_contrato serial NOT NULL,
     monto real NOT NULL,
@@ -117,6 +118,7 @@ CREATE TABLE "SEGURO_DW_G29611513".fact_registro_contrato (
     CONSTRAINT fk_fecha_fin FOREIGN KEY (sk_fecha_fin) REFERENCES "SEGURO_DW_G29611513".dim_tiempo(sk_tiempo),
     CONSTRAINT fk_cliente FOREIGN KEY (sk_dim_cliente) REFERENCES "SEGURO_DW_G29611513".dim_cliente(sk_dim_cliente),
     CONSTRAINT fk_producto FOREIGN KEY (sk_dim_producto) REFERENCES "SEGURO_DW_G29611513".dim_producto(sk_dim_producto),
+    CONSTRAINT fk_sucursal FOREIGN KEY (sk_dim_sucursal) REFERENCES "SEGURO_DW_G29611513".dim_sucursal(sk_dim_sucursal),
     CONSTRAINT fk_contrato FOREIGN KEY (sk_dim_contrato) REFERENCES "SEGURO_DW_G29611513".dim_contrato(sk_dim_contrato),
     CONSTRAINT fk_estado_contrato FOREIGN KEY (sk_dim_estado_contrato) REFERENCES "SEGURO_DW_G29611513".dim_estado_contrato(sk_dim_estado_contrato)
 );
