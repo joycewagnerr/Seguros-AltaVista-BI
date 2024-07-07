@@ -2710,35 +2710,44 @@ ORDER BY nro_siniestro;</sql>
         <rename>sk_fecha_siniestro</rename>
       </field>
       <field>
-        <name>sk_tiempo</name>
+        <name>sk_tiempo_1</name>
         <rename>sk_fecha_respuesta</rename>
       </field>
       <field>
         <name>sk_dim_cliente</name>
+        <rename/>
       </field>
       <field>
         <name>sk_dim_contrato</name>
+        <rename/>
       </field>
       <field>
         <name>sk_dim_sucursal</name>
+        <rename/>
       </field>
       <field>
         <name>sk_dim_producto</name>
+        <rename/>
       </field>
       <field>
         <name>sk_dim_siniestro</name>
+        <rename/>
       </field>
       <field>
         <name>cantidad</name>
+        <rename/>
       </field>
       <field>
         <name>monto_reconocido</name>
+        <rename/>
       </field>
       <field>
         <name>monto_solicitado</name>
+        <rename/>
       </field>
       <field>
         <name>id_rechazo</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>

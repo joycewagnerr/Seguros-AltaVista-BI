@@ -1928,23 +1928,28 @@
         <rename>sk_dim_fecha_inicio_meta</rename>
       </field>
       <field>
-        <name>sk_tiempo</name>
+        <name>sk_tiempo_1</name>
         <rename>sk_dim_fecha_fin_meta</rename>
       </field>
       <field>
         <name>sk_dim_producto</name>
+        <rename/>
       </field>
       <field>
         <name>sk_dim_contrato</name>
+        <rename/>
       </field>
       <field>
         <name>monto_meta_ingreso</name>
+        <rename/>
       </field>
       <field>
         <name>meta_renovacion</name>
+        <rename/>
       </field>
       <field>
         <name>meta_asegurado</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>registro_contrato</name>
+    <name>sucursal</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -643,7 +644,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Unir por nro_contrato 6</from>
+      <from>Unir por nro_contrato 7</from>
       <to>Select values</to>
       <enabled>Y</enabled>
     </hop>
@@ -703,7 +704,27 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Unir por nro_contrato 5</from>
+      <from>Registro contrato</from>
+      <to>sucursal</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DIM_SUCURSAL</from>
+      <to>sucursal 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>sucursal</from>
+      <to>Unir por sucursal</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>sucursal 2</from>
+      <to>Unir por sucursal</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unir por sucursal</from>
       <to>nro_contrato 12</to>
       <enabled>Y</enabled>
     </hop>
@@ -715,6 +736,26 @@
     <hop>
       <from>nro_contrato 11</from>
       <to>Unir por nro_contrato 6</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unir por nro_contrato 6</from>
+      <to>nro_contrato 14</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unir por nro_contrato 5</from>
+      <to>nro_contrato 13</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>nro_contrato 13</from>
+      <to>Unir por nro_contrato 7</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>nro_contrato 14</from>
+      <to>Unir por nro_contrato 7</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -1338,6 +1379,202 @@
     <GUI>
       <xloc>224</xloc>
       <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>DIM_SUCURSAL</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>BI</connection>
+    <sql>SELECT * FROM "SEGURO_DW_G29611513".dim_sucursal</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>sk_dim_sucursal</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>DIM_SUCURSAL</origin>
+        <comments>sk_dim_sucursal</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Caracas</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>cod_sucursal</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>DIM_SUCURSAL</origin>
+        <comments>cod_sucursal</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Caracas</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>nb_sucursal</name>
+        <length>25</length>
+        <precision>-1</precision>
+        <origin>DIM_SUCURSAL</origin>
+        <comments>nb_sucursal</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Caracas</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>cod_ciudad</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>DIM_SUCURSAL</origin>
+        <comments>cod_ciudad</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Caracas</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>nb_ciudad</name>
+        <length>45</length>
+        <precision>-1</precision>
+        <origin>DIM_SUCURSAL</origin>
+        <comments>nb_ciudad</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Caracas</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>cod_pais</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>DIM_SUCURSAL</origin>
+        <comments>cod_pais</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Caracas</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>nb_pais</name>
+        <length>45</length>
+        <precision>-1</precision>
+        <origin>DIM_SUCURSAL</origin>
+        <comments>nb_pais</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Caracas</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>208</xloc>
+      <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2092,6 +2329,12 @@
         <condition>=</condition>
         <name2/>
       </key>
+      <key>
+        <name>sk_dim_sucursal</name>
+        <field>sk_dim_sucursal</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
       <value>
         <name>sk_fecha_inicio</name>
         <rename>sk_fecha_inicio</rename>
@@ -2147,6 +2390,11 @@
         <rename>cantidad_contrato</rename>
         <update>Y</update>
       </value>
+      <value>
+        <name>sk_dim_sucursal</name>
+        <rename>sk_dim_sucursal</rename>
+        <update>Y</update>
+      </value>
     </lookup>
     <attributes/>
     <cluster_schema/>
@@ -2174,13 +2422,13 @@
       <schema_name/>
     </partitioning>
     <connection>BI</connection>
-    <sql>SELECT nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto, estado_contrato, 
+    <sql>SELECT nro_contrato, cod_producto, cod_cliente, cod_sucursal, fecha_inicio, fecha_fin, monto, estado_contrato, 
 COUNT(DISTINCT fecha_inicio) AS cantidad,
 CASE WHEN ROW_NUMBER() OVER (PARTITION BY nro_contrato ORDER BY nro_contrato) = 1 THEN 1 ELSE 0 END AS cantidad_contrato,
 CASE WHEN ROW_NUMBER() OVER (PARTITION BY cod_producto ORDER BY cod_producto) = 1 THEN 1 ELSE 0 END AS cantidad_producto,
 CASE WHEN ROW_NUMBER() OVER (PARTITION BY cod_cliente ORDER BY cod_cliente) = 1 THEN 1 ELSE 0 END AS cantidad_cliente
 FROM "SEGURO_G29611513".registro_contrato
-GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto, estado_contrato;</sql>
+GROUP BY nro_contrato, cod_producto, cod_cliente, cod_sucursal, fecha_inicio, fecha_fin, monto, estado_contrato;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -2242,6 +2490,29 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
         <precision>0</precision>
         <origin>Registro contrato</origin>
         <comments>cod_cliente</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Caracas</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>cod_sucursal</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>Registro contrato</origin>
+        <comments>cod_sucursal</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
@@ -2473,35 +2744,48 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
         <rename>sk_fecha_inicio</rename>
       </field>
       <field>
-        <name>sk_tiempo</name>
+        <name>sk_tiempo_1</name>
         <rename>sk_fecha_fin</rename>
       </field>
       <field>
         <name>sk_dim_cliente</name>
+        <rename/>
       </field>
       <field>
         <name>sk_dim_contrato</name>
+        <rename/>
       </field>
       <field>
         <name>sk_dim_producto</name>
+        <rename/>
       </field>
       <field>
         <name>sk_dim_estado_contrato</name>
+        <rename/>
       </field>
       <field>
         <name>monto</name>
+        <rename/>
       </field>
       <field>
         <name>cantidad</name>
+        <rename/>
       </field>
       <field>
         <name>cantidad_cliente</name>
+        <rename/>
       </field>
       <field>
         <name>cantidad_producto</name>
+        <rename/>
       </field>
       <field>
         <name>cantidad_contrato</name>
+        <rename/>
+      </field>
+      <field>
+        <name>sk_dim_sucursal</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -2741,11 +3025,13 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
       <key>nro_contrato</key>
       <key>cod_producto</key>
       <key>cod_cliente</key>
+      <key>cod_sucursal</key>
     </keys_1>
     <keys_2>
       <key>nro_contrato</key>
       <key>cod_producto</key>
       <key>cod_cliente</key>
+      <key>cod_sucursal</key>
     </keys_2>
     <attributes/>
     <cluster_schema/>
@@ -2779,11 +3065,13 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
       <key>nro_contrato</key>
       <key>cod_producto</key>
       <key>cod_cliente</key>
+      <key>cod_sucursal</key>
     </keys_1>
     <keys_2>
       <key>nro_contrato</key>
       <key>cod_producto</key>
       <key>cod_cliente</key>
+      <key>cod_sucursal</key>
     </keys_2>
     <attributes/>
     <cluster_schema/>
@@ -2817,11 +3105,13 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
       <key>nro_contrato</key>
       <key>cod_producto</key>
       <key>cod_cliente</key>
+      <key>cod_sucursal</key>
     </keys_1>
     <keys_2>
       <key>nro_contrato</key>
       <key>cod_producto</key>
       <key>cod_cliente</key>
+      <key>cod_sucursal</key>
     </keys_2>
     <attributes/>
     <cluster_schema/>
@@ -2855,11 +3145,13 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
       <key>nro_contrato</key>
       <key>cod_producto</key>
       <key>cod_cliente</key>
+      <key>cod_sucursal</key>
     </keys_1>
     <keys_2>
       <key>nro_contrato</key>
       <key>cod_producto</key>
       <key>cod_cliente</key>
+      <key>cod_sucursal</key>
     </keys_2>
     <attributes/>
     <cluster_schema/>
@@ -2887,17 +3179,59 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
       <schema_name/>
     </partitioning>
     <join_type>INNER</join_type>
-    <step1>nro_contrato 12</step1>
-    <step2>nro_contrato 11</step2>
+    <step1>nro_contrato 11</step1>
+    <step2>nro_contrato 12</step2>
     <keys_1>
       <key>nro_contrato</key>
       <key>cod_producto</key>
       <key>cod_cliente</key>
+      <key>cod_sucursal</key>
     </keys_1>
     <keys_2>
       <key>nro_contrato</key>
       <key>cod_producto</key>
       <key>cod_cliente</key>
+      <key>cod_sucursal</key>
+    </keys_2>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>880</xloc>
+      <yloc>1008</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Unir por nro_contrato 7</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <join_type>INNER</join_type>
+    <step1>nro_contrato 13</step1>
+    <step2>nro_contrato 14</step2>
+    <keys_1>
+      <key>nro_contrato</key>
+      <key>cod_producto</key>
+      <key>cod_cliente</key>
+      <key>cod_sucursal</key>
+    </keys_1>
+    <keys_2>
+      <key>nro_contrato</key>
+      <key>cod_producto</key>
+      <key>cod_cliente</key>
+      <key>cod_sucursal</key>
     </keys_2>
     <attributes/>
     <cluster_schema/>
@@ -2910,6 +3244,40 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
     <GUI>
       <xloc>1232</xloc>
       <yloc>528</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Unir por sucursal</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <join_type>INNER</join_type>
+    <step1>sucursal</step1>
+    <step2>sucursal 2</step2>
+    <keys_1>
+      <key>cod_sucursal</key>
+    </keys_1>
+    <keys_2>
+      <key>cod_sucursal</key>
+    </keys_2>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>1136</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3403,7 +3771,7 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
         <presorted>N</presorted>
       </field>
       <field>
-        <name>cantidad_cliente</name>
+        <name>cod_producto</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -3411,7 +3779,15 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
         <presorted>N</presorted>
       </field>
       <field>
-        <name>cod_producto</name>
+        <name>cod_cliente</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>cod_sucursal</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -3476,6 +3852,14 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
         <collator_strength>0</collator_strength>
         <presorted>N</presorted>
       </field>
+      <field>
+        <name>cod_sucursal</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -3519,7 +3903,7 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
         <presorted>N</presorted>
       </field>
       <field>
-        <name>cantidad_producto</name>
+        <name>cod_producto</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -3528,6 +3912,80 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
       </field>
       <field>
         <name>cod_cliente</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>cod_sucursal</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>880</xloc>
+      <yloc>1136</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>nro_contrato 13</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>nro_contrato</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>cod_producto</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>cod_cliente</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>cod_sucursal</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -3546,6 +4004,72 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
     <GUI>
       <xloc>1056</xloc>
       <yloc>336</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>nro_contrato 14</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>nro_contrato</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>cod_producto</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>cod_cliente</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>cod_sucursal</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1072</xloc>
+      <yloc>1008</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3634,6 +4158,14 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
         <collator_strength>0</collator_strength>
         <presorted>N</presorted>
       </field>
+      <field>
+        <name>cod_sucursal</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -3686,6 +4218,14 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
       </field>
       <field>
         <name>cod_cliente</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>cod_sucursal</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -3750,6 +4290,14 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
         <collator_strength>0</collator_strength>
         <presorted>N</presorted>
       </field>
+      <field>
+        <name>cod_sucursal</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -3808,6 +4356,14 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
         <collator_strength>0</collator_strength>
         <presorted>N</presorted>
       </field>
+      <field>
+        <name>cod_sucursal</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -3851,6 +4407,14 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
         <presorted>N</presorted>
       </field>
       <field>
+        <name>cod_producto</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
         <name>cod_cliente</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
@@ -3859,7 +4423,7 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
         <presorted>N</presorted>
       </field>
       <field>
-        <name>cod_producto</name>
+        <name>cod_sucursal</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -3876,7 +4440,7 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
       </output>
     </remotesteps>
     <GUI>
-      <xloc>512</xloc>
+      <xloc>528</xloc>
       <yloc>768</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3909,6 +4473,14 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
         <presorted>N</presorted>
       </field>
       <field>
+        <name>cod_producto</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
         <name>cod_cliente</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
@@ -3917,7 +4489,7 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
         <presorted>N</presorted>
       </field>
       <field>
-        <name>cod_producto</name>
+        <name>cod_sucursal</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -3982,6 +4554,14 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
         <collator_strength>0</collator_strength>
         <presorted>N</presorted>
       </field>
+      <field>
+        <name>cod_sucursal</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -3994,6 +4574,90 @@ GROUP BY nro_contrato, cod_producto, cod_cliente, fecha_inicio, fecha_fin, monto
     <GUI>
       <xloc>912</xloc>
       <yloc>192</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>sucursal</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>cod_sucursal</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>208</xloc>
+      <yloc>1136</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>sucursal 2</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>cod_sucursal</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
