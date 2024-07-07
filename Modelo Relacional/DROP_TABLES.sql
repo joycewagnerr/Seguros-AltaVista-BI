@@ -23,8 +23,3 @@ DELETE FROM "SEGURO_G29611513".tipo_producto;
 DELETE FROM "SEGURO_G29611513".sucursal;
 DELETE FROM "SEGURO_G29611513".ciudad;
 DELETE FROM "SEGURO_G29611513".pais;
-
-//verificar el tipo de dato que tiene una columna
-SELECT data_type
-FROM information_schema.columns
-WHERE table_name = 'tipo_producto' AND column_name = 'cod_tipo_producto';

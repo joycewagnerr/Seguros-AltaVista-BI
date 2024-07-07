@@ -102,17 +102,3 @@ CREATE TABLE "SEGURO_G29611513".metas (
     meta_asegurado int NOT NULL,
     CONSTRAINT pk_metas PRIMARY KEY (nro_contrato, cod_producto)
 );
-
-
-
-SELECT nro_contrato, COUNT(*) AS cantidad_contrato
-FROM "SEGURO_G29611513".registro_contrato
-GROUP BY nro_contrato;
-
-SELECT cod_cliente, COUNT(*) AS cantidad_cliente
-FROM "SEGURO_G29611513".registro_contrato
-GROUP BY cod_cliente;
-
-SELECT cod_producto, COUNT(*) AS cantidad_producto
-FROM "SEGURO_G29611513".registro_contrato
-GROUP BY cod_producto;
