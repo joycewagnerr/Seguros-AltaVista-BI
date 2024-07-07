@@ -70,7 +70,7 @@ CREATE TABLE "SEGURO_G29611513".registro_contrato (
     fecha_fin date NOT NULL,
     monto real NOT NULL,
     estado_contrato varchar(15) NOT NULL,
-    CONSTRAINT pk_reg_contrato PRIMARY KEY (nro_contrato, cod_producto, cod_cliente)
+    CONSTRAINT pk_reg_contrato PRIMARY KEY (nro_contrato, cod_producto, cod_cliente, cod_sucursal)
 );
 
 CREATE TABLE "SEGURO_G29611513".siniestro (
